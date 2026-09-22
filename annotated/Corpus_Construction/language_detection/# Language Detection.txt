@@ -1,0 +1,15 @@
+# Language detection
+
+This script performs automatic language detection on Goodreads reviews of the six Kafka works "Amerika", "The Castle", "A Hunger Artist", "The Metamorphosis", "In the Penal Colony", and "The Trial". It prepares the corpus for the later filtering to English-language reviews.
+
+The review files are read directly from "KafkaCSV.zip". Language detection is applied to the "text" column using the "langdetect" library.
+
+For each review, three new values are determined:
+
+1. "language" –> detected language
+2. "language_confidence" –> confidence score of the prediction
+3. "language_note" –> detection status
+
+Predictions with a confidence score of at least 0.80 are marked as "ok", while lower-confidence predictions are marked as "uncertain". Empty reviews, texts without alphabetic characters are marked as "unknown", if they exist.
+
+The annotated datasets are saved in the "output" folder with the suffix "_annotated_confidence.csv". The script also prints language counts for each Kafka work and an overall language distribution across all six datasets.

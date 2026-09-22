@@ -1,0 +1,13 @@
+# Text cleaning and tokenization
+
+
+This script uses "kafka_english_corpus.csv" as its input file. This script prepares the English Goodreads corpus for subsequent textual analysis by cleaning the review text and creating tokenized versions of each review.
+
+The script reads "kafka_english_corpus.csv". If a "review_id" column is not already present, one is created so that each review can be uniquely identified. The review text is then cleaned by decoding HTML entities, removing "<br>" elements and other HTML tags, removing URLs, and normalizing repeated whitespace.
+
+After cleaning, each review is converted to lowercase and tokenized using a regular-expression-based tokenizer. The tokenizer retains alphabetic words and words containing apostrophes, which allows forms such as contractions to remain intact. The total number of tokens in each review is also calculated.
+
+Subsequently, three additional columns are created: "clean_text", which contains the cleaned review text, "tokens", containing the tokenized version of each review, and "token_count", which contains the number of tokens in each review.
+
+The resulting processed corpus is saved as "kafka_english_corpus_tokenized.csv" and is used as the cleaned and tokenized corpus for the subsequent analyses.
+

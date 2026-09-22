@@ -1,0 +1,25 @@
+# Keyword and length analysis
+
+This script uses kafka_english_corpus_tokenized.csv as its input file. It analyzes reviews containing Kafkaesque and related keyword variants in the cleaned and tokenized English Goodreads corpus. Reviews are identified through a case-insensitive regular-expression search for Kafkaesque forms defined in the keyword pattern. 
+
+The script additionally calculates descriptive corpus statistics, including review counts, total token counts, unique type counts, and mean review length, for the complete corpus and each of the six Kafka works. It also compares keyword frequency across the six Kafka works and analyzes the review-length distribution of Kafkaesque-containing reviews.
+
+The reviews are divided into very short reviews (≤10 tokens), a main comparable corpus, and very long reviews above the Q3 + 1.5 × IQR boundary. The resulting datasets, descriptive and frequency statistics, and a review-length boxplot are saved for subsequent analysis.
+
+
+
+The script produces these files located in the output folder:
+
+
+
+corpus_descriptive_statistics.csv 
+
+kafkaesque_keyword_reviews_all_books.csv 
+
+kafkaesque_keyword_frequency_by_book.csv
+
+kafkaesque_main_comparable_corpus.csv
+
+boxplot_kafkaesque_review_lengths.png
+
+

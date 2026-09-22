@@ -1,0 +1,9 @@
+# English corpus creation
+
+This script creates the final English-language Goodreads corpus from the six previously annotated Kafka review datasets.
+
+For each dataset, it standardizes the language labels, records the source file and book title, and retains only reviews classified as English with a language-detection confidence score of at least 0.80. Reviews classified as non-English, unknown, or English with confidence below 0.80 are excluded.
+
+The filtered reviews from all six Kafka works are then combined into a single corpus and saved as "kafka_english_corpus.csv".
+
+The script also reports the total number of retained reviews and the number of reviews for each Kafka work.

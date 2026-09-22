@@ -1,0 +1,53 @@
+# Sub-Study 1: Context, Collocation, and Topic Analysis
+
+These three scripts form the main pipeline for Sub-Study 1 and should be run in the order described below.
+
+
+1. local_context_extraction.py
+
+Input: kafkaesque_main_comparable_corpus.csv
+Output: output/kafkaesque_local_contexts_all_six_books.csv
+
+This script extracts the textual bits surrounding occurrences of "Kafkaesque" and its related forms from the main comparable Goodreads corpus, including one sentence before and one sentence after the keyword-containing sentence. The corpus needed to run this code, namely kafkaesque_main_comparable_corpus.csv, was created during the preprocessing step
+
+The script stores these contexts along with metadata such as the review ID, the book title, and the specific keyword variant used. All extracted local-contexts are saved as a CSV file, which will serve as the main foundation for the subsequent analyses. 
+
+
+2. collocation_analysis.py
+
+Input: output/kafkaesque_local_contexts_all_six_books.csv
+Outputs: output/all_six_books_collocations_pmi.csv and output/all_six_books_collocations_pmi_top40.png
+
+This script analyzes the Kafkaesque local contexts by identifying meaningful word pairings using Pointwise Mutual Information (PMI). After loading the previously extracted local‑context dataset, the script first splits the local contexts into individual sentences and removes repeated sentences within the same review, which prevents sentences shared by overlapping local contexts from being counted multiple times. 
+
+The remaining sentences are tokenized into lowercase word tokens and constructs bigrams from adjacent words. It counts both individual word frequencies and bigram frequencies. It also filters out any bigram that appears fewer than three times to avoid noise from extremely rare combinations.
+
+For each remaining bigram, the script calculates PMI, a measure of how strongly two words are associated compared to what would be expected if they occurred independently. It also stores up to three example contexts for each bigram which allows interpretation of how these word pairs appear in real Kafkaesque descriptions. The resulting dataset is sorted by PMI and frequency, saved as a CSV file, and visualized in a bar chart showing the forty highest‑PMI bigrams. 
+
+
+3. bertopic_analysis.py
+
+Input: output/kafkaesque_local_contexts_all_six_books.csv
+Output: output/bertopic_barchart.html
+
+This script applies BERTopic to the extracted local contexts in order to identify topics regarding how Kafkaesque is described across the six Goodreads corpora. Each context is embedded using the all‑MiniLM‑L6‑v2 sentence‑transformer model and then reduced with UMAP, using a fixed random seed of 42 for better reproducibility. Topic representations are generated from unigrams and bigrams that appear in at least two contexts, after removing standard English stopwords and a set of work‑specific terms such as “Kafka,” “Kafkaesque,” and other generic vocabulary. The resulting topics are visualized as an HTML bar chart that depicts the most representative words associated with each thematic cluster.
+
+Words removed:
+
+   "kafkaesque",
+    "kafka",
+    "kafkaesk",
+    "kafkaian",
+    "kafkaesqued",
+    "kafkaesquely",
+    "kafkaesques",
+    "kafkaesqueity",
+    "esque",
+    "br",
+    "read",
+    "reading",
+    "book",
+    "story",
+    "like",
+    "just",
+    "im"

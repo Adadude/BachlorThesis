@@ -1,0 +1,9 @@
+# Review Length Boxplot
+
+This script uses "kafka_english_corpus_tokenized.csv" as its input file. This script outputs a boxplot regarding the distribution of review lengths in the tokenized English Kafka corpus. Review length is measured using the "token_count" value calculated for each review.
+
+After reading "kafka_english_corpus_tokenized.csv", the script prepares the token-count data, and groups reviews according to their Kafka work. The six works are ordered according to their median review length and are compared with the review-length distribution of the entire corpus.
+
+A horizontal boxplot is created showing the interquartile range, median, mean, and outliers for each Kafka work and for the complete corpus. This makes it possible to compare differences in review length across the six works and to identify reviews with unusual lengths.
+
+The resulting figure is saved as `boxplot_review_length_entire_and_books.png` in the output folder.
