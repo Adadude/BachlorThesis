@@ -9,7 +9,7 @@ set "SUB3=%ROOT%annotated\Sub_Study_3"
 
 if not exist "%PYTHON%" (
     echo ERROR: Could not find the virtual environment at "%PYTHON%".
-    echo Create it with: py -m venv .venv
+    echo Create it with: python -m venv .venv
     exit /b 1
 )
 
