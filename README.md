@@ -5,7 +5,7 @@
 Install the Python libraries used by the corpus construction and sub-study scripts:
 
 ```bash
-pip install r- requirements.txt
+pip install -r requirements.txt
 ```
 
 `torch` can be installed with either CPU support or the CUDA version appropriate for your system. See the official PyTorch installation instructions if you want GPU acceleration for the GLiNER or BERTopic analyses.
